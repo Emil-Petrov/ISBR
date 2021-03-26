@@ -1,4 +1,3 @@
-import React from 'react';
 
 import Article from '../article';
 import api from '../../api';

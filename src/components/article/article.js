@@ -1,19 +1,18 @@
-import React from 'react';
 
-import { Header } from './components'
+import { Header, Body } from './components'
 
-const Article = ({ data }) => {
-    const { title, url, time, score, id } = data.read();
-
+const article = ({ data }) => {
+    const { title, url, time, score, by: username } = data.read();
+    
     return (
         <> 
             <Header title={title} time={time} score={score} url={url} />
+            {username && <Body user={username} />}
         </>
-        // <div>Article - {title}</div>
     );
 };
 
-export default Article;
+export default article;
 // Story title
 // Story URL
 // Story timestamp

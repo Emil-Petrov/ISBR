@@ -37,16 +37,19 @@ const fetchArticles = (count = 10) => {
     return wrapPromise(promise);
 }
 
-const fetchArticle = (articleId) => {
-    const promise = fetch(`${config.baseURL}/item/${articleId}.json`)
+const fetchItem = (id) => {
+    const promise = fetch(`${config.baseURL}/item/${id}.json`)
         .then(r => r.json());
     return wrapPromise(promise);
 }
 
-const fetchUser = async (userName) => {
+const fetchArticle = (articleId) => {
+    return fetchItem(articleId)
+}
+
+const fetchUser = (userName) => {
     const promise = fetch(`${config.baseURL}/user/${userName}.json`)
         .then(r => r.json());
-
     return wrapPromise(promise);
 }
 
@@ -54,6 +57,7 @@ const api = {
     topArticles: fetchArticles,
     user: fetchUser,
     article: fetchArticle,
+    item: fetchItem,
 }
 
 export default api;
