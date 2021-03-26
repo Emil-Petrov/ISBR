@@ -1,21 +1,53 @@
 import config from "./config";
 
-const fetchArticles = async (count = 10) => {
-    const response = await fetch(`${config.baseURL}/topstories.json`);
-    const data = await response.json();
-    return data.splice(0, count);
+function wrapPromise(promise) {
+    let status = 'pending'
+    let response
+
+    const suspender = promise.then(
+        (res) => {
+            status = 'success'
+            response = res
+        },
+        (err) => {
+            status = 'error'
+            response = err
+        },
+    )
+
+    const read = () => {
+        switch (status) {
+            case 'pending':
+                throw suspender
+            case 'error':
+                throw response
+            default:
+                return response
+        }
+    }
+
+    return { read }
 }
 
-const fetchArticle =  async (articleId) => {
-    const response = await fetch(`${config.baseURL}/item/${articleId}.json`)
-    const data = await response.json();
-    return data;
+const fetchArticles = (count = 10) => {
+    const promise = fetch(`${config.baseURL}/topstories.json`)
+        .then(r => r.json())
+        .then(data => data.splice(0, count));
+
+    return wrapPromise(promise);
+}
+
+const fetchArticle = (articleId) => {
+    const promise = fetch(`${config.baseURL}/item/${articleId}.json`)
+        .then(r => r.json());
+    return wrapPromise(promise);
 }
 
 const fetchUser = async (userName) => {
-    const response = await fetch(`${config.baseURL}/user/${userName}.json`)
-    const data = await response.json();
-    return data;
+    const promise = fetch(`${config.baseURL}/user/${userName}.json`)
+        .then(r => r.json());
+
+    return wrapPromise(promise);
 }
 
 const api = {

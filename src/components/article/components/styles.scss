@@ -1,0 +1,38 @@
+.article {
+    &-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        .title {
+            flex-basis: 100%;
+        }
+        .timestamp {
+            height: 1em;
+            display: flex;
+            align-items: center;
+            .link-icon {
+                max-height: 100%;
+            }
+        }
+        .score {
+            padding: 0 5px;
+            height: 1em;
+            display: flex;
+            align-items: center;
+            &::before {
+                height: 1em;
+                display: flex;
+                align-items: center;
+                content: '';
+                background-image: url('../../../icons/thumbs-up.svg');
+                background-size: cover;
+                height: 1em;
+                width: 1em;
+                display: inline-block;
+                margin-right: 5px;
+            }
+        }
+    }
+}
