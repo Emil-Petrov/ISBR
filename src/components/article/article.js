@@ -7,7 +7,9 @@ const article = ({ data }) => {
     const { title, url, time, score: postKarma, by: username } = data.read();
     
     return (
-        <div className="article"> 
+        <div className="article" style={{
+            order: postKarma
+        }}> 
             <Image />
             <div className="content">
                 <Header title={title} time={time} url={url} />
