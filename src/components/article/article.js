@@ -21,10 +21,3 @@ const article = ({ data }) => {
 };
 
 export default article;
-// Story title
-// Story URL
-// Story timestamp
-// Story score
-// Author id
-// Author karma score
-// A dummy image (not from API – just a static asset)

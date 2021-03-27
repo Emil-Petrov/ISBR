@@ -8,8 +8,8 @@
 }
 
 .article-container {
-    -webkit-perspective: 1000;
-    -webkit-backface-visibility: hidden;
+    perspective: 1000;
+    backface-visibility: hidden;
     .loader-container {
         width: 25vw;
         height: 10em;
@@ -51,7 +51,7 @@
                 display: flex;
                 align-items: center;
                 content: '';
-                background-image: url('../../../icons/thumbs-up.svg');
+                background-image: url('../../icons/thumbs-up.svg');
                 background-size: cover;
                 height: 1em;
                 width: 1em;

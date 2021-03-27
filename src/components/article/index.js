@@ -1,8 +1,11 @@
 import React, { Suspense, useEffect, useState } from 'react';
+
 import Loader from '../loader';
 import Article from './article';
 
 import api from '../../api';
+
+import './styles.scss';
 
 const ArticleWrapper = ({ id }) => {
     const [data, setData] = useState({ read: () => ({}) });
