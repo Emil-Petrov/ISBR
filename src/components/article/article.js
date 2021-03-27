@@ -1,12 +1,12 @@
 
 import { Suspense } from 'react';
 import { Header, UserData, Image, Karma } from './components'
-import Loader from '../loader';
 
 const article = ({ data }) => {
     const { title, url, time, score: postKarma, by: username } = data.read();
     
     return (
+        // Order prop sorts the posts...
         <div className="article" style={{
             order: postKarma
         }}> 
