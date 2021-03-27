@@ -3,7 +3,6 @@ import config from "./config";
 function wrapPromise(promise) {
     let status = 'pending'
     let response
-
     const suspender = promise.then(
         (res) => {
             status = 'success'
@@ -20,7 +19,7 @@ function wrapPromise(promise) {
             case 'pending':
                 throw suspender
             case 'error':
-                throw response
+                throw response;
             default:
                 return response
         }
@@ -33,13 +32,16 @@ const fetchArticles = (count = 10) => {
     const promise = fetch(`${config.baseURL}/topstories.json`)
         .then(r => r.json())
         .then(data => data.splice(0, count));
-
+    
     return wrapPromise(promise);
 }
 
 const fetchItem = (id) => {
     const promise = fetch(`${config.baseURL}/item/${id}.json`)
-        .then(r => r.json());
+        .then(r => {
+            return r.json()
+        });
+
     return wrapPromise(promise);
 }
 

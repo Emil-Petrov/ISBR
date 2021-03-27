@@ -1,14 +1,21 @@
 
-import { Header, Body } from './components'
+import { Suspense } from 'react';
+import { Header, UserData, Image } from './components'
+import Loader from '../loader';
 
 const article = ({ data }) => {
     const { title, url, time, score, by: username } = data.read();
     
     return (
-        <> 
-            <Header title={title} time={time} score={score} url={url} />
-            {username && <Body user={username} />}
-        </>
+        <div className="article"> 
+            <Image />
+            <div className="content">
+                <Header title={title} time={time} score={score} url={url} />
+                <Suspense fallback='Loading...'>
+                    <UserData user={username} />
+                </Suspense>
+            </div>
+        </div>
     );
 };
 

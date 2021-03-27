@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import './App.css';
 
-import Articles from './components/articles';
+import Articles from './components/articleList';
 
 function App() {
   return (

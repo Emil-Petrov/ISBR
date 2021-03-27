@@ -1,7 +1,7 @@
 import Header from './header';
-import Body from './body';
 import UserData from './userData';
+import Image from './image';
 
 import './styles.scss';
 
-export { Header, Body, UserData };
+export { Header, UserData, Image };

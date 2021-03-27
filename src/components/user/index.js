@@ -1,18 +1,15 @@
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect } from 'react';
+
 import api from '../../api';
 
 const User = ({ user, render }) => {
-    const [data, setData] = useState({ read: () => ({})});
+    const [data, setData] = useState();
 
     useEffect(() => {
-        setData(api.user(user));
+        if (user) setData(api.user(user));
     }, [user]);
 
-    return (
-        <Suspense fallback='Loading User...'>
-            {render(data)}
-        </Suspense>
-    );
+    return render(data);
 }
 
 export default User;

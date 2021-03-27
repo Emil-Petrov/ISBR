@@ -1,18 +1,22 @@
 import React, { Suspense, useEffect, useState } from 'react';
-
+import Loader from '../loader';
 import Article from './article';
 
 import api from '../../api';
 
 const ArticleWrapper = ({ id }) => {
-    const [data, setData] = useState({ read: () => ({})});
+    const [data, setData] = useState({ read: () => ({}) });
 
     useEffect(() => {
-        setData(api.article(id));
+        if (id) setData(api.article(id));
     }, [id])
 
     return (
-        <Suspense fallback="Loading...">
+        <Suspense fallback={(
+            <div className="loader-container">
+                <Loader />
+            </div>
+        )}>
             <Article data={data} />
         </Suspense>
     )
