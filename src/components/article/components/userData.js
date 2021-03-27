@@ -1,14 +1,15 @@
 import User from '../../user';
+import Karma from './karma';
 
 const userData = ({ data }) => {
     if (!data) return null;
-    
+
     const { id, karma } = data.read();
-    
+
     return (
         <div className="user-data">
             <div className="name">{id}</div>
-            <div className="karma">{karma}</div>
+            <Karma count={karma} />
         </div>
     )
 }
